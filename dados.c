@@ -18,3 +18,14 @@ typedef struct
     int num_jogadas;
     int jogador_atual;
 } ESTADO;
+
+ESTADO *inicializar_estado() 
+{
+    ESTADO *e = (ESTADO *) malloc(sizeof(ESTADO));
+    e->jogador_atual = 1;
+    e->num_jogadas = 0;
+    e->jogadas
+    e->ultima_jogada = 
+    e->tab[5][5] = '*'
+    return e;
+}
