@@ -29,3 +29,5 @@ ESTADO *inicializar_estado()
     e->tab[5][5] = '*'
     return e;
 }
+
+//teste
