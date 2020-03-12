@@ -34,7 +34,7 @@ int interpretador(ESTADO *e) {
     if(fgets(linha, BUF_SIZE, stdin) == NULL)
         return 0;
     if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
-        COORDENADA coord = {*col - 'a', *lin - '1'};
+        COORDENADA coord = {*lin - '1', *col - 'a'};
         jogar(e, coord);
         mostrar_tabuleiro(e);
     }
