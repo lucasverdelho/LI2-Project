@@ -14,8 +14,8 @@ ESTADO *inicializar_estado(){
         for (int coluna = 0; coluna < 8; coluna++)
         {
             if (linha == 3 && coluna == 4) 
-                e->tab[coluna][linha] = BRANCA;
-            e->tab[coluna][linha] = VAZIO;
+                e->tab[linha][coluna] = BRANCA;
+            e->tab[linha][coluna] = VAZIO;
         }
     }
     return e;
