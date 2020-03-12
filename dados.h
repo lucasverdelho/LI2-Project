@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef ___DADOS_H___
 #define ___DADOS_H___
 
