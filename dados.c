@@ -7,7 +7,7 @@ ESTADO *inicializar_estado(){
     e->num_jogadas = 0;
     COORDENADA j1 = {3,4};
     COORDENADA j2 = {4,4};
-    JOGADA jogada1 = {j1,j2};
+    JOGADA jogada0 = {j1,j2};
     e->jogadas[0] = jogada1;
     for (int linha = 0; linha < 8; linha++)
     {
