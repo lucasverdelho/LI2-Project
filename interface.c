@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "dados.h"
+#include "logica.h"
 #define BUF_SIZE 1024
 
 // Função que deve ser completada e colocada na camada de interface
@@ -10,7 +11,17 @@ void mostrar_tabuleiro(ESTADO *e) {
                 putchar('2');
             if(linha == 7 && coluna == 0)
                 putchar ('1');
-            putchar('.');
+            switch(e -> tab[linha][coluna]){
+                case VAZIO : 
+                    putchar('.');
+                    break;
+                case BRANCA :
+                    putchar('*');
+                    break;
+                case PRETA :
+                    putchar('#');
+                    break;
+            }
         }
         putchar('\n');
     }
