@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include "dados.h"
 #define BUF_SIZE 1024
