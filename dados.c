@@ -22,17 +22,21 @@ ESTADO *inicializar_estado(){
 }
 
 int obter_jogador_atual(ESTADO *estado){
-    int k;
-    k = estado -> jogador_atual;
-    return k;
+    int jogador;
+    jogador = estado -> jogador_atual;
+    return jogador;
 }
 
 int obter_numero_de_jogadas(ESTADO *estado){
-    int k;
-    k = estado -> num_jogadas;
-    return k;
+    int n_jogadas;
+    n_jogadas = estado -> num_jogadas;
+    return n_jogadas;
 }
 
-int obter_estado_casa(ESTADO *e, COORDENADA c){
-
+CASA obter_estado_casa(ESTADO *e, COORDENADA c){
+    int linha, coluna;
+    linha = c.linha;
+    coluna = c.coluna;
+    CASA e_casa = e -> tab[linha][coluna];
+    return e_casa;
 }
