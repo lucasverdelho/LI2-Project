@@ -8,10 +8,7 @@
 int jogar(ESTADO *e, COORDENADA c) {
     printf("jogar %d %d\n", c.coluna, c.linha);
     e->tab[c.linha][c.coluna] = BRANCA;
-    
-    e->num_jogadas++;
-
-
+    e->tab[e->ultima_jogada.linha][e->ultima_jogada.coluna] = PRETA;
     return 1;
 }
 
