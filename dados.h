@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef ___DADOS_H___
 #define ___DADOS_H___
 
@@ -35,3 +36,4 @@ int obter_numero_de_jogadas(ESTADO *estado);
 int obter_estado_casa(ESTADO *e, COORDENADA c);
 
 #endif
+
