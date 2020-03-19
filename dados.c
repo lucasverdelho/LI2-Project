@@ -9,10 +9,8 @@ ESTADO *inicializar_estado(){
     COORDENADA j2 = {4,4};
     JOGADA jogada0 = {j1,j2};
     e->jogadas[0] = jogada0;
-    for (int linha = 0; linha < 8; linha++)
-    {
-        for (int coluna = 0; coluna < 8; coluna++)
-        {
+    for (int linha = 0; linha < 8; linha++){
+        for (int coluna = 0; coluna < 8; coluna++){
             if (linha == 3 && coluna == 4) 
                 e->tab[linha][coluna] = BRANCA;
             if (linha == 0 && coluna == 7)
