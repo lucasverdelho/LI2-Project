@@ -5,13 +5,18 @@
 
 // Função que deve ser completada e colocada na camada de interface
 void mostrar_tabuleiro(ESTADO *e) {
+    COORDENADA c;
     for(int linha = 0; linha < 8; linha++){
         for(int coluna = 0; coluna < 8; coluna++){
-            if(linha == 0 && coluna == 7)
-                putchar('2');
-            if(linha == 7 && coluna == 0)
-                putchar ('1');
-            switch(e -> tab[linha][coluna]){
+            c.linha = linha;
+            c.coluna = coluna;
+            switch(obter_estado_casa(e,c)){
+                case UM : 
+                    putchar('1');
+                    break;
+                case DOIS : 
+                    putchar('2');
+                    break;
                 case VAZIO : 
                     putchar('.');
                     break;
