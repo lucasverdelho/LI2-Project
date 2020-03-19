@@ -5,6 +5,7 @@ ESTADO *inicializar_estado(){
     ESTADO *e = (ESTADO *) malloc(sizeof(ESTADO));
     e->jogador_atual = 1;
     e->num_jogadas = 0;
+    e->num_comando = 0;
     COORDENADA j1 = {3,4};
     COORDENADA j2 = {4,4};
     JOGADA jogada0 = {j1,j2};
@@ -39,6 +40,6 @@ CASA obter_estado_casa(ESTADO *e, COORDENADA c){
     int linha, coluna;
     linha = c.linha;
     coluna = c.coluna;
-    CASA e_casa = e -> tab[linha][coluna];
+    CASA e_casa = e->tab[linha][coluna];
     return e_casa;
 }
