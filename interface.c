@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "dados.h"
 #include "logica.h"
-#define BUF_SIZE 1024
+
 
 // Função que deve ser completada e colocada na camada de interface
 void mostrar_tabuleiro(ESTADO *e) {
     COORDENADA c;
     for(int linha = 0; linha < 8; linha++){
+        printf("%d ",8-linha);
         for(int coluna = 0; coluna < 8; coluna++){
             c.linha = linha;
             c.coluna = coluna;
@@ -30,6 +31,7 @@ void mostrar_tabuleiro(ESTADO *e) {
         }
         putchar('\n');
     }
+    printf("  abcdefgh\n");
 }
 
 // Função que deve ser completada e colocada na camada de interface
