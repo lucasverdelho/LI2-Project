@@ -3,7 +3,6 @@
 #include "logica.h"
 
 
-// Função que deve ser completada e colocada na camada de interface
 void mostrar_tabuleiro(ESTADO *e) {
     for(int linha = 0; linha < 8; linha++){
         printf("%d ",8-linha);
@@ -44,6 +43,7 @@ void print_erro(ERROS e){
         printf("%s\n",lista_erros[e]);
 }
 
+<<<<<<< HEAD
 int gravar(ESTADO *e, char *filename){
     FILE *f = fopen(filename,"w");
     if(f == NULL)
@@ -53,6 +53,9 @@ int gravar(ESTADO *e, char *filename){
 }
 
 // Função que deve ser completada e colocada na camada de interface
+=======
+
+>>>>>>> 493b3662d3e9c529c2efdb2b0a1200f86c7fd711
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
     char col[2], lin[2];
