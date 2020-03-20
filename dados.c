@@ -24,17 +24,20 @@ ESTADO *inicializar_estado(){
     return e;
 }
 
+
 int obter_jogador_atual(ESTADO *estado){
     int jogador;
     jogador = estado -> jogador_atual;
     return jogador;
 }
 
+
 int obter_numero_de_jogadas(ESTADO *estado){
     int n_jogadas;
     n_jogadas = estado -> num_jogadas;
     return n_jogadas;
 }
+
 
 CASA obter_estado_casa(ESTADO *e, COORDENADA c){
     int linha, coluna;
