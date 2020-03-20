@@ -69,19 +69,16 @@ typedef struct {
 } ESTADO;
 
 /**
-\brief Inicializa o valor do estado
-Esta função inicializa o valor do estado. Isso implica o tabuleiro ser colocado na posição inicial e todos os campos do estado estarem com o valor por omissão.
-@returns O novo estado
-*/
-ESTADO *inicializar_estado();
-
-/**
-\brief Obtem jogador atual
+\brief Função que devolve o jogador atual
+@param estado Apontador para o estado
+@returns O Jogador
 */
 int obter_jogador_atual(ESTADO *estado);
 
 /**
-\brief Obtem números de jogadas até ao momento
+\brief Função que devolve o número de jogadas
+@param estado Apontador para o estado
+@returns O número de jogadas
 */
 int obter_numero_de_jogadas(ESTADO *estado);
 
@@ -92,5 +89,12 @@ int obter_numero_de_jogadas(ESTADO *estado);
 @returns O valor da casa
 */
 CASA obter_estado_casa(ESTADO *e, COORDENADA c);
+
+/**
+\brief Inicializa o valor do estado
+Esta função inicializa o valor do estado. Isso implica o tabuleiro ser colocado na posição inicial e todos os campos do estado estarem com o valor por omissão.
+@returns O novo estado
+*/
+ESTADO *inicializar_estado();
 
 #endif
