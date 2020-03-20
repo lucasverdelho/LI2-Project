@@ -11,10 +11,6 @@ int jogada_valida(ESTADO *e, COORDENADA c_jogada){
 }
 
 
-// Função que deve ser completada e colocada na camada da lógica do programa
-
-// Modificar o estado ao jogar na casa correta se a jogada for válida.
-
 ERROS jogar(ESTADO *e, COORDENADA c) {
     if(obter_estado_casa(e,c) == PRETA || obter_estado_casa(e,c) == BRANCA)
         return COORDENADA_INVALIDA;
