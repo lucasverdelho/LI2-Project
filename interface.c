@@ -44,12 +44,22 @@ void print_erro(ERROS e){
         printf("%s\n",lista_erros[e]);
 }
 
+int gravar(ESTADO *e, char *filename){
+    FILE *f = fopen(filename,"w");
+    if(f == NULL)
+        return 0;
+    mostrar_tabuleiro(e);
+    return 1;
+}
+
 // Função que deve ser completada e colocada na camada de interface
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
     char col[2], lin[2];
+    char filename[BUF_SIZE];
+
     e->num_comando++;
-    printf("# %02d Player%d (%d)",e->num_comando,e->jogador_atual,e->num_jogadas);
+    printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
     if(fgets(linha, BUF_SIZE, stdin) == NULL)
         return 0;
     if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
@@ -57,7 +67,14 @@ int interpretador(ESTADO *e) {
         ERROS validar;
         if(validar = jogar(e, coord) == OK)
             mostrar_tabuleiro(e);
+        else 
+            print_erro(validar);
+        return 1;
     }
-    else print_erro()
-    return 1;
+    if(sscanf(linha, "gr %s", filename) == 1){
+        gravar(e,filename);
+    }
+    if(sscanf(linha, "ler %s", filename) == 1){
+        ERROS 
+    }
 }
