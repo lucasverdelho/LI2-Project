@@ -32,6 +32,19 @@ int casas_livres(ESTADO *e, COORDENADA c)
             return 0;
         }
     }
+
+    if ((c.linha+1) > 8) // linha mais abaixo
+    {
+        if ((obter_estado_casa(e,c_norte) == PRETA) &&
+            (obter_estado_casa(e,c_nordeste) == PRETA) &&
+            (obter_estado_casa(e,c_este) == PRETA) &&
+            (obter_estado_casa(e,c_oeste) == PRETA) &&
+            (obter_estado_casa(e,c_nordeste) == PRETA))
+        {
+            return 0;
+        }
+    }
+
     if ((c.linha-1 < 0) && (c.coluna-1 < 0)) // Canto superior esquerdo do mapa
     {
         if ((obter_estado_casa(e,c_este) == PRETA) &&
@@ -41,6 +54,17 @@ int casas_livres(ESTADO *e, COORDENADA c)
             return 0;
         }
     }
+
+    if ((c.linha+1 > 8) && (c.coluna+1 > 8)) // Canto inferior direito do mapa
+    {
+        if ((obter_estado_casa(e,c_norte) == PRETA) &&
+            (obter_estado_casa(e,c_noroeste) == PRETA) &&
+            (obter_estado_casa(e,c_este) == PRETA))
+        {
+            return 0;
+        }
+    }
+
     if ((c.coluna-1) < 0) // Coluna a
     {
         if ((obter_estado_casa(e,c_norte) == PRETA) &&
@@ -52,6 +76,7 @@ int casas_livres(ESTADO *e, COORDENADA c)
             return 0;
         }
     }
+
     if ((c.coluna+1) > 8) // Coluna h
     {
         if ((obter_estado_casa(e,c_norte) == PRETA) &&
@@ -63,7 +88,7 @@ int casas_livres(ESTADO *e, COORDENADA c)
             return 0;
         }
     }
-    if ((c.linha+1) > 8) // linha mais abaixo
+    
     if ((obter_estado_casa(e,c_norte) == PRETA) &&
         (obter_estado_casa(e,c_nordeste) == PRETA) &&
         (obter_estado_casa(e,c_noroeste) == PRETA) &&
