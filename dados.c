@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dados.h"
 
 ESTADO *inicializar_estado(){
@@ -14,9 +15,9 @@ ESTADO *inicializar_estado(){
         for (int coluna = 0; coluna < 8; coluna++){
             if (linha == 3 && coluna == 4) 
                 e->tab[linha][coluna] = BRANCA;
-            if (linha == 0 && coluna == 7)
+            else if (linha == 0 && coluna == 7)
                 e->tab[linha][coluna] = DOIS;
-            if (linha == 7 && coluna == 0)
+            else if (linha == 7 && coluna == 0)
                 e->tab[linha][coluna] = UM;
             else e->tab[linha][coluna] = VAZIO;
         }
