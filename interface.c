@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "dados.h"
 #include "logica.h"
 
@@ -8,23 +9,7 @@ void mostrar_tabuleiro(ESTADO *e) {
         printf("%d ",8-linha);
         for(int coluna = 0; coluna < 8; coluna++){
             COORDENADA c = {linha, coluna};
-            switch(obter_estado_casa(e,c)){
-                case UM : 
-                    putchar('1');
-                    break;
-                case DOIS : 
-                    putchar('2');
-                    break;
-                case VAZIO : 
-                    putchar('.');
-                    break;
-                case BRANCA :
-                    putchar('*');
-                    break;
-                case PRETA :
-                    putchar('#');
-                    break;
-            }
+            putchar(obter_estado_casa(e,c));
         }
         putchar('\n');
     }
@@ -75,6 +60,5 @@ int interpretador(ESTADO *e) {
         gravar(e,filename);
     }
     if(sscanf(linha, "ler %s", filename) == 1){
-        ERROS 
     }
 }
