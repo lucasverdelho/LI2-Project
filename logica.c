@@ -58,7 +58,7 @@ ERROS jogar(ESTADO *e, COORDENADA c) {
     else
         return JOGADA_INVALIDA;
     if(obter_estado_casa(e,c) == UM || obter_estado_casa(e,c) == DOIS)
-        printf("O Jogador %d e o vencedor", obter_estado_casa(e,c));
+        printf("O Jogador %c e o vencedor", obter_estado_casa(e,c));
     e->tab[c.linha][c.coluna] = BRANCA;
     e->tab[e->ultima_jogada.linha][e->ultima_jogada.coluna] = PRETA;
     return OK;
