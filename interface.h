@@ -9,7 +9,7 @@ Interpretador de comandos e mostra Tabuleiro
 /**
 \brief Função que devolve o tabuleiro
 */
-void mostrar_tabuleiro(ESTADO *e);
+void mostrar_tabuleiro(FILE *f,ESTADO *e);
 
 /**
 \brief Função que devolve o erro correspondente
