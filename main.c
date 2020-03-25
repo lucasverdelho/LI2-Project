@@ -7,7 +7,7 @@
 // Função que deve ser colocada no ficheiro main.c
 int main(){
     ESTADO *e = inicializar_estado();
-    mostrar_tabuleiro(e);
+    mostrar_tabuleiro(stdout,e);
     while (interpretador(e));
     return 0;
 }
