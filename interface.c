@@ -65,29 +65,32 @@ int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
     char col[2], lin[2], sair;
     char filename[BUF_SIZE];
-
-    e->num_comando++; // criar funçao 
-    printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
-    if(fgets(linha, BUF_SIZE, stdin) == NULL)
-        return 0;
-    if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
-        COORDENADA coord = {*lin - '1', *col - 'a'};
-        jogar(e,coord);
-        mostrar_tabuleiro(stdout,e);
-    }
-    if(sscanf(linha, "gr %s", filename) == 1){
-        ERROS erro_gravar;
-        if((erro_gravar = gravar(e,filename)) == OK);
-        else 
-            print_erro(erro_gravar);
-    }
-    if(sscanf(linha, "ler %s", filename) == 1){
-        ERROS erro_ler;
-        if((erro_ler = ler(e,filename)) == OK)
+    int vencedor_j1 = 0, vencedor_j2 = 0;
+    while (vencedor_j1 && vencedor_j2) // Condiçao dos jogadores
+    {
+        e->num_comando++; // criar funçao 
+        printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
+        if(fgets(linha, BUF_SIZE, stdin) == NULL)
+            return 0;
+        if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
+            COORDENADA coord = {*lin - '1', *col - 'a'};
+            jogar(e,coord);
             mostrar_tabuleiro(stdout,e);
-        else 
-            print_erro(erro_ler);
+        }
+        if(sscanf(linha, "gr %s", filename) == 1){
+            ERROS erro_gravar;
+            if((erro_gravar = gravar(e,filename)) == OK);
+            else 
+                print_erro(erro_gravar);
+        }
+        if(sscanf(linha, "ler %s", filename) == 1){
+            ERROS erro_ler;
+            if((erro_ler = ler(e,filename)) == OK)
+                mostrar_tabuleiro(stdout,e);
+            else 
+                print_erro(erro_ler);
+        }
+        if(sscanf(linha, "%[Q]", sair) == 1)
+            return 0;
     }
-    if(sscanf(linha, "%[Q]", sair) == 1)
-        return 0;
 }
