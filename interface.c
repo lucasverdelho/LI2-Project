@@ -3,6 +3,7 @@
 #include <string.h>
 #include "dados.h"
 #include "logica.h"
+
 void print_erro(ERROS e){
     char *lista_erros[] = {
         "OK",
@@ -39,6 +40,15 @@ ERROS gravar(ESTADO *e, char *filename){
 }
 
 ERROS ler_tabuleiro(ESTADO *e,FILE *f){
+    char buffer[BUF_SIZE];
+    for(int l = 0; l < 8; l++){
+        if(fgets(buffer,BUF_SIZE,f) == NULL)
+            return ERRO_LER_TAB;
+        for(int c = 0; c < 8; c++){
+            COORDENADA cor = {l,c};
+            set_casa(e,cor,(CASA) buffer[c]);
+        }          
+    }
     return OK;
 }
 
@@ -53,10 +63,10 @@ ERROS ler(ESTADO *e, char *filename){
 
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
-    char col[2], lin[2];
+    char col[2], lin[2], sair;
     char filename[BUF_SIZE];
 
-    e->num_comando++;
+    e->num_comando++; // criar funçao 
     printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
     if(fgets(linha, BUF_SIZE, stdin) == NULL)
         return 0;
@@ -74,8 +84,6 @@ int interpretador(ESTADO *e) {
         if((erro_gravar = gravar(e,filename)) == OK);
         else 
             print_erro(erro_gravar);
-        
-
     }
     if(sscanf(linha, "ler %s", filename) == 1){
         ERROS erro_ler;
@@ -84,4 +92,6 @@ int interpretador(ESTADO *e) {
         else 
             print_erro(erro_ler);
     }
+    if(sscanf(linha, "%[Q]", sair) == 1)
+        return 0;
 }
