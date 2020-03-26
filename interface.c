@@ -66,7 +66,7 @@ int interpretador(ESTADO *e) {
     char col[2], lin[2], sair;
     char filename[BUF_SIZE];
     int vencedor_j1 = 0, vencedor_j2 = 0;
-    while (vencedor_j1 && vencedor_j2) // Condiçao dos jogadores
+    while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
         e->num_comando++; // criar funçao 
         printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
@@ -74,7 +74,7 @@ int interpretador(ESTADO *e) {
             return 0;
         if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
             COORDENADA coord = {*lin - '1', *col - 'a'};
-            jogar(e,coord);
+            jogar(e,coord,&vencedor_j1, &vencedor_j2);
             mostrar_tabuleiro(stdout,e);
         }
         if(sscanf(linha, "gr %s", filename) == 1){
@@ -93,4 +93,7 @@ int interpretador(ESTADO *e) {
         if(sscanf(linha, "%[Q]", sair) == 1)
             return 0;
     }
+    if (vencedor_j1 == 1)
+    printf("O Jogador 1 e o vencedor");
+    else printf("O Jogador 2 e o vencedor");
 }
