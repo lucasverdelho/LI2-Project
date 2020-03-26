@@ -48,6 +48,7 @@ int jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
             int linha = 7-c.linha;
             int coluna = c.coluna;
             //atualizar_jogada(e,c,obter_jogador_atual (e));
+            mudar_ultima_jogada(e,c);
             mete_casa_branca(e,c);
             mete_casa_preta(e);
             if (linha == 0 && coluna == 7) *vence_j2 = 1; // ganha jogador 2
