@@ -3,13 +3,13 @@
 #include "dados.h"
 #include "interface.h"
 
-int jogada_valida(ESTADO *e, COORDENADA c_jogada)
-{
-    COORDENADA c_atual = {e->ultima_jogada.linha,e->ultima_jogada.coluna};
-    if(abs(c_jogada.linha-c_atual.linha) <= 1 && abs(c_jogada.coluna-c_atual.coluna) <= 1)
-        return 1;
-    return 0;
-}
+// int jogada_valida(ESTADO *e, COORDENADA c_jogada)
+// {
+//     COORDENADA c_atual = obter_ultima_jogada(e);
+//     if(abs(c_jogada.linha-c_atual.linha) <= 1 && abs(c_jogada.coluna-c_atual.coluna) <= 1)
+//         return 1;
+//     return 0;
+// }
 
 ERROS casas_livres(ESTADO *e) {return OK;}
 // {
@@ -43,7 +43,7 @@ int jogar(ESTADO *e, COORDENADA c)
 {
     if (casas_livres(e) == OK)
     {
-        if ((obter_estado_casa(e,c)!= PRETA) && (obter_estado_casa(e,c)!= BRANCA) && jogada_valida(e,c))
+        if ((obter_estado_casa(e,c)!= PRETA) && (obter_estado_casa(e,c)!= BRANCA))
         {
             int linha = c.linha;
             int coluna = c.coluna;
