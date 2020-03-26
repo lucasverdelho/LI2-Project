@@ -20,7 +20,7 @@ int jogada_valida(ESTADO *e, COORDENADA c_jogada);
 @param c A coordenada
 @returns Verdadeiro (valor diferente de zero) se for possível jogar e Falso (zero) caso não seja possível
 */
-int jogar(ESTADO *e, COORDENADA c);
+int jogar(ESTADO *e, COORDENADA c, int *vencedor_1, int *vencedor_2);
 
 
 #endif
