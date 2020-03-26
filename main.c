@@ -8,6 +8,6 @@
 int main(){
     ESTADO *e = inicializar_estado();
     mostrar_tabuleiro(stdout,e);
-    while (interpretador(e));
+    interpretador(e);
     return 0;
 }
