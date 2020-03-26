@@ -72,12 +72,8 @@ int interpretador(ESTADO *e) {
         return 0;
     if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
         COORDENADA coord = {*lin - '1', *col - 'a'};
-        ERROS validar;
-        if((validar = jogar(e, coord)) == OK)
-            mostrar_tabuleiro(stdout,e);
-        else 
-            print_erro(validar);
-        return 1;
+        jogar(e,coord);
+        mostrar_tabuleiro(stdout,e);
     }
     if(sscanf(linha, "gr %s", filename) == 1){
         ERROS erro_gravar;
