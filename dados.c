@@ -11,6 +11,7 @@ ESTADO *inicializar_estado(){
     COORDENADA j2 = {4,4};
     JOGADA jogada0 = {j1,j2};
     e->jogadas[0] = jogada0;
+    e->ultima_jogada = j2;
     for (int linha = 0; linha < 8; linha++){
         for (int coluna = 0; coluna < 8; coluna++){
             if (linha == 3 && coluna == 4) 
@@ -43,4 +44,23 @@ CASA obter_estado_casa(ESTADO *e, COORDENADA c){
     coluna = c.coluna;
     CASA e_casa = e->tab[linha][coluna];
     return e_casa;
+}
+
+void mete_casa_branca(ESTADO *e,COORDENADA c)
+{
+    e->tab[7-c.linha][c.coluna] = BRANCA;
+}
+
+void mete_casa_preta(ESTADO *e)
+{
+    COORDENADA atual = e->ultima_jogada;
+    e->tab[7-atual.linha][atual.coluna] = PRETA;
+}
+
+void set_casa(ESTADO *e, COORDENADA c, CASA valor){
+    e->tab[c.linha][c.coluna] = valor;
+}
+
+void add_num_comando(ESTADO *e){
+    e->num_comando++;
 }
