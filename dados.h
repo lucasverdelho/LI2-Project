@@ -98,4 +98,8 @@ void mete_casa_branca(ESTADO *e,COORDENADA c);
 
 void mete_casa_preta(ESTADO *e);
 
+void set_casa(ESTADO *e, COORDENADA c, CASA valor);
+
+void add_num_comando(ESTADO *e);
+
 #endif
