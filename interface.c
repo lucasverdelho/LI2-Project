@@ -93,7 +93,7 @@ int interpretador(ESTADO *e) {
         if(sscanf(linha, "%[Q]", sair) == 1)
             return 0;
     }
-    if (vencedor_j1 == 1)
-    printf("O Jogador 1 e o vencedor");
+    if (vencedor_j1)
+        printf("O Jogador 1 e o vencedor");
     else printf("O Jogador 2 e o vencedor");
 }
