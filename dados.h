@@ -102,6 +102,10 @@ void set_casa(ESTADO *e, COORDENADA c, CASA valor);
 
 void add_num_comando(ESTADO *e);
 
+<<<<<<< HEAD
 void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
 
 #endif
+=======
+#endif
+>>>>>>> 053fa6ba4c24b957c40c6a24f700ab9ad774d587
