@@ -32,13 +32,13 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
 }
 
 void print_jogadas(FILE *f,ESTADO *e){
-    for(int i = 1; i <= obter_num_jogadas(e); i++){
-        JOGADA j = obter_jogada(e);
+    for(int i = 0; i < obter_num_jogadas(e); i++){
+        JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
         char cj2 = j.jogador2.coluna + 'a';
         char lj2 = j.jogador2.linha + '1';
-        fprintf(f,"%02d: %c%c %c%c\n",i,cj1,lj1,cj2,lj2);
+        fprintf(f,"%02d: %c%c %c%c\n",i+1,cj1,lj1,cj2,lj2);
     }
 }
 
@@ -80,7 +80,7 @@ int interpretador(ESTADO *e) {
     int vencedor_j1 = 0, vencedor_j2 = 0;
     while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
-        add_num_comando(e); 
+        add_num_comando(e);
         printf("# %02d Player%d (%d)> ",obter_num_comando(e),obter_jogador_atual(e),obter_num_jogadas(e));
         if(fgets(linha, BUF_SIZE, stdin) == NULL)
             return 0;
