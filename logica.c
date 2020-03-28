@@ -47,7 +47,14 @@ int jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
         {
             int linha = 7-c.linha;
             int coluna = c.coluna;
-            //atualizar_jogada(e,c,obter_jogador_atual (e));
+            atualizar_jogada(e,c);
+//            if(obter_jogador_atual(e) == 1){
+//                altera_jogador(e,obter_jogador_atual(e));
+//            }
+//            else {
+//                altera_jogador(e,obter_jogador_atual(e));
+//                add_num_jogadas(e);
+//            }
             mudar_ultima_jogada(e,c);
             mete_casa_branca(e,c);
             mete_casa_preta(e);

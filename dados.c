@@ -32,7 +32,7 @@ int obter_jogador_atual(ESTADO *estado){
     return jogador;
 }
 
-int obter_numero_de_jogadas(ESTADO *estado){
+int obter_num_jogadas(ESTADO *estado){
     int n_jogadas;
     n_jogadas = estado -> num_jogadas;
     return n_jogadas;
@@ -44,6 +44,10 @@ CASA obter_estado_casa(ESTADO *e, COORDENADA c){
     coluna = c.coluna;
     CASA e_casa = e->tab[linha][coluna];
     return e_casa;
+}
+
+JOGADA obter_jogada(ESTADO *e){
+    return e->jogadas[obter_num_jogadas(e)];
 }
 
 void mete_casa_branca(ESTADO *e,COORDENADA c)
@@ -65,7 +69,28 @@ void add_num_comando(ESTADO *e){
     e->num_comando++;
 }
 
-void mudar_ultima_jogada(ESTADO *e,COORDENADA c)
-{
+void add_num_jogadas(ESTADO *e){
+    e->num_jogadas++;
+}
+
+void mudar_ultima_jogada(ESTADO *e,COORDENADA c){
     e->ultima_jogada = c;
+}
+
+void altera_jogador(ESTADO *e,int jogador){
+    if(jogador == 1)
+        e->jogador_atual = 2;
+    else
+        e->jogador_atual = 1;
+}
+
+void atualizar_jogada(ESTADO *e,COORDENADA c){
+    if(obter_jogador_atual(e) == 1){
+        e->jogadas[obter_num_jogadas(e)].jogador1 = c;
+        altera_jogador(e,obter_jogador_atual(e));
+    }
+    else 
+        e->jogadas[obter_num_jogadas(e)].jogador2 = c;
+        altera_jogador(e,obter_jogador_atual(e));
+        add_num_jogadas(e);
 }
