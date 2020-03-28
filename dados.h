@@ -84,7 +84,9 @@ int obter_jogador_atual(ESTADO *estado);
 /**
 \brief Obtem números de jogadas até ao momento
 */
-int obter_numero_de_jogadas(ESTADO *estado);
+int obter_num_jogadas(ESTADO *estado);
+
+JOGADA obter_jogada(ESTADO *e);
 
 /**
 \brief Devolve o valor de uma casa
@@ -102,4 +104,11 @@ void set_casa(ESTADO *e, COORDENADA c, CASA valor);
 
 void add_num_comando(ESTADO *e);
 
+void add_num_jogadas(ESTADO *e);
+
+void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
+
+void altera_jogador(ESTADO *e,int jogador);
+
+void atualizar_jogada(ESTADO *e,COORDENADA c);
 #endif
