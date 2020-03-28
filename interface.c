@@ -31,7 +31,7 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
         printf("  abcdefgh\n");
 }
 
-void print_jogadas(FILE *f,ESTADO *e){
+void movs(FILE *f,ESTADO *e){
     for(int i = 0; i < obter_num_jogadas(e); i++){
         JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
@@ -54,7 +54,7 @@ ERROS gravar(ESTADO *e, char *filename){
     if(f == NULL)
         return ERRO_GRAVAR_FICHEIRO;
     mostrar_tabuleiro(f,e);
-    print_jogadas(f,e);
+    movs(f,e);
     return OK;
 }
 
@@ -108,6 +108,9 @@ int interpretador(ESTADO *e) {
                 mostrar_tabuleiro(stdout,e);
             else 
                 print_erro(erro_ler);
+        }
+        if(sscanf(linha, "movs %s", filename) == 1){
+            movs(e,filename);
         }
         if(sscanf(linha, "%[Q]", sair) == 1)
             return 0;
