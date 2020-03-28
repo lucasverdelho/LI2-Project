@@ -76,17 +76,18 @@ Esta função inicializa o valor do estado. Isso implica o tabuleiro ser colocad
 */
 ESTADO *inicializar_estado();
 
+int obter_num_comando(ESTADO *e);
 /**
 \brief Obtem jogador atual
 @param e Apontador para o estado
 */
-int obter_jogador_atual(ESTADO *estado);
+int obter_jogador_atual(ESTADO *e);
 
 /**
 \brief Obtem números de jogadas até ao momento
 @param e Apontador para o estado
 */
-int obter_num_jogadas(ESTADO *estado);
+int obter_num_jogadas(ESTADO *e);
 
 JOGADA obter_jogada(ESTADO *e);
 
@@ -97,6 +98,8 @@ JOGADA obter_jogada(ESTADO *e);
 @returns O valor da casa
 */
 CASA obter_estado_casa(ESTADO *e, COORDENADA c);
+
+COORDENADA obter_ultima_jogada(ESTADO *e);
 
 /**
 \brief Coloca a peça Branca
