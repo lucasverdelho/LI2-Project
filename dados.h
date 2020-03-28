@@ -88,6 +88,11 @@ int obter_jogador_atual(ESTADO *estado);
 */
 int obter_num_jogadas(ESTADO *estado);
 
+/**
+\brief Obtem a jogada
+@param e Apontador para o estado
+@returns A jogada
+*/
 JOGADA obter_jogada(ESTADO *e);
 
 /**
@@ -125,6 +130,10 @@ void set_casa(ESTADO *e, COORDENADA c, CASA valor);
 */
 void add_num_comando(ESTADO *e);
 
+/**
+\brief Adiciona valor um ao número de jogadas
+@param e Apontador para o estado
+*/
 void add_num_jogadas(ESTADO *e);
 
 /**
@@ -134,8 +143,18 @@ void add_num_jogadas(ESTADO *e);
 */
 void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
 
+/**
+\brief Altera o jogador
+@param e Apontador para o estado
+@param jogador Número do jogador
+*/
 void altera_jogador(ESTADO *e,int jogador);
 
+/**
+\brief Atualiza a jogada
+@param e Apontador para o estado
+@param c A coordenada
+*/
 void atualizar_jogada(ESTADO *e,COORDENADA c);
 
 #endif
