@@ -53,8 +53,8 @@ COORDENADA obter_ultima_jogada(ESTADO *e)
     return e->ultima_jogada;
 }
 
-JOGADA obter_jogada(ESTADO *e){
-    return e->jogadas[obter_num_jogadas(e)];
+JOGADA obter_jogada(ESTADO *e, int indice){
+    return e->jogadas[indice];
 }
 
 void mete_casa_branca(ESTADO *e,COORDENADA c)
@@ -91,8 +91,10 @@ void atualizar_jogada(ESTADO *e,COORDENADA c){
         e->jogadas[obter_num_jogadas(e)].jogador1 = c;
         e->jogador_atual = 2;
     }
-    else 
+    else
+    { 
         e->jogadas[obter_num_jogadas(e)].jogador2 = c;
         e->jogador_atual = 1;
         add_num_jogadas(e);
+    }
 }
