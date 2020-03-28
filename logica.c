@@ -51,11 +51,11 @@ int jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
             mudar_ultima_jogada(e,c);
             mete_casa_branca(e,c);
             mete_casa_preta(e);
-            if (linha == 0 && coluna == 7) vence_j2 = 1; // ganha jogador 2
-            else if (linha == 7 && coluna == 0) vence_j1 = 1; // ganha jogador 1
+            if (linha == 0 && coluna == 7) *vence_j2 = 1; // ganha jogador 2
+            else if (linha == 7 && coluna == 0) *vence_j1 = 1; // ganha jogador 1
         }
     }
-    else vence_j1 = 1; // ganha o jogador que bloqueou o outro
+    else *vence_j1 = 1; // ganha o jogador que bloqueou o outro
     return 1;
 }
 
