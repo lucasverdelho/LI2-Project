@@ -89,7 +89,7 @@ int obter_jogador_atual(ESTADO *e);
 */
 int obter_num_jogadas(ESTADO *e);
 
-JOGADA obter_jogada(ESTADO *e);
+JOGADA obter_jogada(ESTADO *e, int indice);
 
 /**
 \brief Devolve o valor de uma casa
