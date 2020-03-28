@@ -78,11 +78,13 @@ ESTADO *inicializar_estado();
 
 /**
 \brief Obtem jogador atual
+@param e Apontador para o estado
 */
 int obter_jogador_atual(ESTADO *estado);
 
 /**
 \brief Obtem números de jogadas até ao momento
+@param e Apontador para o estado
 */
 int obter_num_jogadas(ESTADO *estado);
 
@@ -96,19 +98,44 @@ JOGADA obter_jogada(ESTADO *e);
 */
 CASA obter_estado_casa(ESTADO *e, COORDENADA c);
 
+/**
+\brief Coloca a peça Branca
+@param e Apontador para o estado
+@param c A coordenada
+*/
 void mete_casa_branca(ESTADO *e,COORDENADA c);
 
+/**
+\brief Coloca a peça Preta
+@param e Apontador para o estado
+*/
 void mete_casa_preta(ESTADO *e);
 
+/**
+\brief Muda o valor de uma casa
+@param e Apontador para o estado
+@param c A coordenada
+@param valor O novo valor para a casa
+*/
 void set_casa(ESTADO *e, COORDENADA c, CASA valor);
 
+/**
+\brief Adiciona valor um ao número de comando
+@param e Apontador para o estado
+*/
 void add_num_comando(ESTADO *e);
 
 void add_num_jogadas(ESTADO *e);
 
+/**
+\brief Altera a última jogada
+@param e Apontador para o estado
+@param c A coordenada
+*/
 void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
 
 void altera_jogador(ESTADO *e,int jogador);
 
 void atualizar_jogada(ESTADO *e,COORDENADA c);
+
 #endif
