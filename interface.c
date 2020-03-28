@@ -40,6 +40,13 @@ void print_jogadas(FILE *f,ESTADO *e){
         char lj2 = j.jogador2.linha + '1';
         fprintf(f,"%02d: %c%c %c%c\n",i+1,cj1,lj1,cj2,lj2);
     }
+    if(obter_jogador_atual(e) == 2){
+        int j_incompleta = obter_num_jogadas(e);
+        JOGADA j = obter_jogada(e,j_incompleta);
+        char cj1 = j.jogador1.coluna + 'a';
+        char lj1 = j.jogador1.linha + '1';
+        fprintf(f,"%02d: %c%c\n",j_incompleta,cj1,lj1);
+    }
 }
 
 ERROS gravar(ESTADO *e, char *filename){
