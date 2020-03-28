@@ -81,7 +81,7 @@ int interpretador(ESTADO *e) {
     while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
         add_num_comando(e); 
-        printf("# %02d Player%d (%d)> ",e->num_comando,e->jogador_atual,e->num_jogadas);
+        printf("# %02d Player%d (%d)> ",obter_num_comando(e),obter_jogador_atual(e),obter_num_jogadas(e));
         if(fgets(linha, BUF_SIZE, stdin) == NULL)
             return 0;
         if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
