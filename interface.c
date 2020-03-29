@@ -31,7 +31,8 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
         printf("  abcdefgh\n");
 }
 
-void movs(FILE *f,ESTADO *e){
+void movs(ESTADO *e,char *filename){
+    FILE *f = fopen(filename,"w");
     for(int i = 0; i < obter_num_jogadas(e); i++){
         JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
@@ -54,7 +55,6 @@ ERROS gravar(ESTADO *e, char *filename){
     if(f == NULL)
         return ERRO_GRAVAR_FICHEIRO;
     mostrar_tabuleiro(f,e);
-    movs(f,e);
     return OK;
 }
 
@@ -98,7 +98,8 @@ int interpretador(ESTADO *e) {
         }
         if(sscanf(linha, "gr %s", filename) == 1){
             ERROS erro_gravar;
-            if((erro_gravar = gravar(e,filename)) == OK);
+            if((erro_gravar = gravar(e,filename)) == OK)
+                movs(e,filename);
             else 
                 print_erro(erro_gravar);
         }
