@@ -76,16 +76,24 @@ Esta função inicializa o valor do estado. Isso implica o tabuleiro ser colocad
 */
 ESTADO *inicializar_estado();
 
+/**
+\brief Obtem número de comando
+@param e Apontador para o estado
+@returns num_comando
+*/
 int obter_num_comando(ESTADO *e);
+
 /**
 \brief Obtem jogador atual
 @param e Apontador para o estado
+@returns O Jogador atual
 */
 int obter_jogador_atual(ESTADO *e);
 
 /**
 \brief Obtem números de jogadas até ao momento
 @param e Apontador para o estado
+@returns O númro de jogadas
 */
 int obter_num_jogadas(ESTADO *e);
 
@@ -104,6 +112,11 @@ JOGADA obter_jogada(ESTADO *e, int indice);
 */
 CASA obter_estado_casa(ESTADO *e, COORDENADA c);
 
+/**
+\brief Devolve a coordenada da última jogada
+@param e Apontador para o estado
+@returns A coordenada
+*/
 COORDENADA obter_ultima_jogada(ESTADO *e);
 
 /**
