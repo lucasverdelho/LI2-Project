@@ -52,17 +52,21 @@ ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
             mete_casa_preta(e);
             atualizar_jogada(e,c);
             mudar_ultima_jogada(e,c);
-            if (linha == 0 && coluna == 7) *vence_j2 = 1; // ganha jogador 2
-            else if (linha == 7 && coluna == 0) *vence_j1 = 1; // ganha jogador 1
-            else if (casas_livres(e) != OK) // ganha o jogador que bloqueou o outro
+            if (linha == 0 && coluna == 7) 
+                *vence_j2 = 1;                  // ganha jogador 2
+            else if (linha == 7 && coluna == 0) 
+                *vence_j1 = 1;                  // ganha jogador 1
+            else if (casas_livres(e) != OK)     // ganha o jogador que bloqueou o outro
             {
                 if (obter_jogador_atual(e) == 1) *vence_j2 = 1;
                 else *vence_j1 = 1;
             }
         }
         else 
-            return COORDENADA_INVALIDA;
+            return JOGADA_INVALIDA;
     }
+    else 
+        return COORDENADA_INVALIDA;
     return OK;
 }
 
