@@ -60,6 +60,8 @@ ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
                 else *vence_j1 = 1;
             }
         }
+        else 
+            return COORDENADA_INVALIDA;
     }
     return OK;
 }
