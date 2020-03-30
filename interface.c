@@ -97,7 +97,8 @@ int interpretador(ESTADO *e) {
             ERROS erro_jogar;
             if((erro_jogar = jogar(e,coord,&vencedor_j1, &vencedor_j2)) == OK)
                 mostrar_tabuleiro(stdout,e);
-            else print_erro(erro_jogar);
+            else 
+                print_erro(erro_jogar);
         }
         if(sscanf(linha, "gr %s", filename) == 1){
             ERROS erro_gravar;
@@ -112,10 +113,10 @@ int interpretador(ESTADO *e) {
             else 
                 print_erro(erro_ler);
         }
-        if(sscanf(linha, "movs") == 1){ // DUVIDA
+        if(strcmp(linha, "movs\n") == 0){ // DUVIDA
             movs(e,stdout);
         }
-        if(sscanf(linha, "%[Q]", sair) == 1) // DUVIDA
+        if(strcmp(linha, "Q\n") == 0) // DUVIDA
             return 0;
     }
     if (vencedor_j1)
