@@ -15,12 +15,21 @@ Lógica do progama
 int jogada_valida(ESTADO *e, COORDENADA c_jogada);
 
 /**
+\brief Função que verifica as casas livres 
+@param e Apontador para o estado
+@returns OK se houver casas disponíveis e JOGADA_INVALIDA caso contrário
+*/
+ERROS casas_livres(ESTADO *e);
+
+/**
 \brief Função que modifica o estado ao jogar na casa correta se a jogada for válida
 @param e Apontador para o estado
 @param c A coordenada
-@returns Verdadeiro (valor diferente de zero) se for possível jogar e Falso (zero) caso não seja possível
+@param vence_j1 Apontador para o jogador 1 vencedor
+@param vence_j2 Apontador para o jogador 2 vencedor
+@returns OK se a jogada for válida e JOGADA_INVALIDA caso contrário
 */
-int jogar(ESTADO *e, COORDENADA c, int *vencedor_1, int *vencedor_2);
+ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2);
 
 
 #endif
