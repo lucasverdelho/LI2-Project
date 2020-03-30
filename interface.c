@@ -7,8 +7,8 @@
 void print_erro(ERROS erro){
     char *lista_erros[] = {
         "OK",
-        "Coordenada invalida",
         "Jogada invalida",
+        "Coordenada invalida",
         "Erro de leitura do tabuleiro",
         "Erro ao abrir o ficheiro",
         "Erro ao gravar o ficheiro"
@@ -31,8 +31,7 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
         printf("  abcdefgh\n");
 }
 
-void movs(ESTADO *e,char *filename){
-    FILE *f = fopen(filename,"w");
+void movs(ESTADO *e,FILE *f){
     for(int i = 0; i < obter_num_jogadas(e); i++){
         JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
@@ -46,7 +45,7 @@ void movs(ESTADO *e,char *filename){
         JOGADA j = obter_jogada(e,j_incompleta);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
-        fprintf(f,"%02d: %c%c\n",j_incompleta,cj1,lj1);
+        fprintf(f,"%02d: %c%c\n",j_incompleta+1,cj1,lj1);
     }
 }
 
@@ -55,6 +54,8 @@ ERROS gravar(ESTADO *e, char *filename){
     if(f == NULL)
         return ERRO_GRAVAR_FICHEIRO;
     mostrar_tabuleiro(f,e);
+    fputc('\n',f);
+    movs(e,f);
     return OK;
 }
 
@@ -93,13 +94,14 @@ int interpretador(ESTADO *e) {
             return 0;
         if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
             COORDENADA coord = {*lin - '1', *col - 'a'};
-            jogar(e,coord,&vencedor_j1, &vencedor_j2);
-            mostrar_tabuleiro(stdout,e);
+            ERROS erro_jogar;
+            if((erro_jogar = jogar(e,coord,&vencedor_j1, &vencedor_j2)) == OK)
+                mostrar_tabuleiro(stdout,e);
+            else print_erro(erro_jogar);
         }
         if(sscanf(linha, "gr %s", filename) == 1){
             ERROS erro_gravar;
-            if((erro_gravar = gravar(e,filename)) == OK)
-                movs(e,filename);
+            if((erro_gravar = gravar(e,filename)) == OK);
             else 
                 print_erro(erro_gravar);
         }
@@ -110,14 +112,15 @@ int interpretador(ESTADO *e) {
             else 
                 print_erro(erro_ler);
         }
-        if(sscanf(linha, "movs %s", filename) == 1){
-            movs(e,filename);
+        if(sscanf(linha, "movs") == 1){ // DUVIDA
+            movs(e,stdout);
         }
-        if(sscanf(linha, "%[Q]", sair) == 1)
+        if(sscanf(linha, "%[Q]", sair) == 1) // DUVIDA
             return 0;
     }
     if (vencedor_j1)
         printf("O Jogador 1 e o vencedor");
     else 
         printf("O Jogador 2 e o vencedor");
+    return 0;
 }
