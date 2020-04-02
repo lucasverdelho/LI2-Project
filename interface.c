@@ -59,14 +59,43 @@ ERROS gravar(ESTADO *e, char *filename){
     return OK;
 }
 
+COORDENADA str_to_coord(char *jog){
+    int lin, col;
+    lin = jog[1] - '1';
+    col = jog[0] - 'a';
+    COORDENADA coord = {lin,col};
+    return coord;
+}
+
+void ler_jogadas(ESTADO *e,FILE *f){
+    char linha[BUF_SIZE];
+    int num_jog;
+    while(fgets(linha, BUF_SIZE, f) != NULL) {
+        char jog1[BUF_SIZE];
+        char jog2[BUF_SIZE];
+        int num_tokens = sscanf(linha, "%d: %s %s", &num_jog, jog1, jog2);
+        if(num_tokens == 3) {
+        	COORDENADA c1 = str_to_coord(jog1);
+        	COORDENADA c2 = str_to_coord(jog2);
+        	armazenar_jogada(e,(JOGADA) {c1, c2},num_jog);
+        } 
+        else {
+        	COORDENADA c1 = str_to_coord(jog1);
+        	COORDENADA c2 = {-1, -1};
+        	armazenar_jogada(e,(JOGADA) {c1, c2},num_jog);
+        }
+    }
+    armazenar_ultima_jogada(e,num_jog);
+}
+
 ERROS ler_tabuleiro(ESTADO *e,FILE *f){
-    char buffer[BUF_SIZE];
+    char linha[BUF_SIZE];
     for(int l = 0; l < 8; l++){
-        if(fgets(buffer,BUF_SIZE,f) == NULL)
+        if(fgets(linha,BUF_SIZE,f) == NULL)
             return ERRO_LER_TAB;
         for(int c = 0; c < 8; c++){
             COORDENADA cor = {l,c};
-            set_casa(e,cor,(CASA) buffer[c]);
+            set_casa(e,cor,(CASA) linha[c]);
         }          
     }
     return OK;
@@ -76,7 +105,9 @@ ERROS ler(ESTADO *e, char *filename){
     FILE *f = fopen(filename,"r");
     if(f == NULL)
         return ERRO_ABRIR_FICHEIRO;
-    return ler_tabuleiro(e,f);
+    ERROS erro_tab = ler_tabuleiro(e,f);
+    ler_jogadas(e,f);
+    return erro_tab;
 }
 
 // Função que deve ser completada e colocada na camada de interface
