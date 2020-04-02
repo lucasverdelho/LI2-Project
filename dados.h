@@ -173,8 +173,19 @@ void altera_jogador(ESTADO *e,int jogador);
 */
 void atualizar_jogada(ESTADO *e,COORDENADA c);
 
+/**
+\brief Armazena a jogada
+@param e Apontador para o estado
+@param jog Jogada
+@param num_jog Número do jogador
+*/
 void armazenar_jogada(ESTADO *e, JOGADA jog, int num_jog);
 
+/**
+\brief Armazena a última jogada
+@param e Apontador para o estado
+@param num_jog Número do jogador
+*/
 void armazenar_ultima_jogada(ESTADO *e,int num_jog);
 
 #endif
