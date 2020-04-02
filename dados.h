@@ -173,4 +173,8 @@ void altera_jogador(ESTADO *e,int jogador);
 */
 void atualizar_jogada(ESTADO *e,COORDENADA c);
 
+void armazenar_jogada(ESTADO *e, JOGADA jog, int num_jog);
+
+void armazenar_ultima_jogada(ESTADO *e,int num_jog);
+
 #endif
