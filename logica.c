@@ -16,15 +16,15 @@ ERROS casas_livres(ESTADO *e)
     COORDENADA c_atual = obter_ultima_jogada(e);
     for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1; linhas++)
     {
-        if (linhas == -1);
-        else if (linhas == 8)
+        if (linhas < 0);
+        else if (linhas > 7)
             break;
         else 
         {
             for (int colunas = c_atual.coluna-1; colunas <= c_atual.coluna + 1; colunas++)
             {
-                if (colunas == -1);
-                else if (colunas == 8)
+                if (colunas < 0);
+                else if (colunas > 7)
                     break;
                 else 
                 {
