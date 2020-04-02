@@ -84,7 +84,6 @@ void mudar_ultima_jogada(ESTADO *e,COORDENADA c){
     e->ultima_jogada = c;
 }
 
-
 void atualizar_jogada(ESTADO *e,COORDENADA c){
     if(obter_jogador_atual(e) == 1)
     {
@@ -97,4 +96,19 @@ void atualizar_jogada(ESTADO *e,COORDENADA c){
         e->jogador_atual = 1;
         add_num_jogadas(e);
     }
+}
+
+void armazenar_jogada(ESTADO *e, JOGADA jog, int num_jog){
+    e->jogadas[num_jog-1] = jog;
+}
+
+void armazenar_ultima_jogada(ESTADO *e,int num_jog){
+    COORDENADA ultima = e->jogadas[num_jog-1].jogador2;
+    if(ultima.coluna == -1){
+        e->ultima_jogada = e->jogadas[num_jog-1].jogador1;
+        e->jogador_atual = 2;
+    }
+    else
+        e->ultima_jogada = e->jogadas[num_jog-1].jogador2;
+    e->num_jogadas = num_jog-1;
 }
