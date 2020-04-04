@@ -14,18 +14,14 @@ int jogada_valida(ESTADO *e, COORDENADA c_jogada)
 ERROS casas_livres(ESTADO *e)
 {
     COORDENADA c_atual = obter_ultima_jogada(e);
-    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1; linhas++)
+    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas > 7; linhas++)
     {
         if (linhas < 0);
-        else if (linhas > 7)
-            break;
         else 
         {
-            for (int colunas = c_atual.coluna-1; colunas <= c_atual.coluna + 1; colunas++)
+            for (int colunas = c_atual.coluna-1; colunas <= c_atual.coluna + 1 && colunas > 7; colunas++)
             {
                 if (colunas < 0);
-                else if (colunas > 7)
-                    break;
                 else 
                 {
                     COORDENADA validar = {linhas,colunas};
