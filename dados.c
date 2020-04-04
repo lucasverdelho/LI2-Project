@@ -5,7 +5,7 @@
 ESTADO *inicializar_estado(){
     ESTADO *e = (ESTADO *) malloc(sizeof(ESTADO));
     e->jogador_atual = 1;
-    e->num_jogadas = 0;
+    e->num_jogadas = 1;
     e->num_comando = 0;
     COORDENADA j1 = {3,4};
     COORDENADA j2 = {4,4};
@@ -99,16 +99,27 @@ void atualizar_jogada(ESTADO *e,COORDENADA c){
 }
 
 void armazenar_jogada(ESTADO *e, JOGADA jog, int num_jog){
-    e->jogadas[num_jog-1] = jog;
+    e->jogadas[num_jog] = jog;
 }
 
 void armazenar_ultima_jogada(ESTADO *e,int num_jog){
-    COORDENADA ultima = e->jogadas[num_jog-1].jogador2;
+    COORDENADA ultima = e->jogadas[num_jog].jogador2;
     if(ultima.coluna == -1){
-        e->ultima_jogada = e->jogadas[num_jog-1].jogador1;
+        e->ultima_jogada = e->jogadas[num_jog].jogador1;
         e->jogador_atual = 2;
+        e->num_jogadas = num_jog;
     }
-    else
-        e->ultima_jogada = e->jogadas[num_jog-1].jogador2;
-    e->num_jogadas = num_jog-1;
+    else{
+        e->ultima_jogada = e->jogadas[num_jog].jogador2;
+        e->num_jogadas = num_jog+1;
+    }
+}
+
+void altera_num_jogadas(ESTADO *e, int jogada){
+    e->num_jogadas = jogada;
+}
+
+void altera_ult_jogada(ESTADO *e, int jogada){
+    COORDENADA ult = e->jogadas[jogada].jogador2;
+    e->ultima_jogada = ult;
 }
