@@ -11,7 +11,8 @@ void print_erro(ERROS erro){
         "Coordenada invalida",
         "Erro de leitura do tabuleiro",
         "Erro ao abrir o ficheiro",
-        "Erro ao gravar o ficheiro"
+        "Erro ao gravar o ficheiro",
+        "Posicao invalida"
     };
     if(erro != OK)
         printf("%s\n",lista_erros[erro]);
@@ -32,20 +33,20 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
 }
 
 void movs(ESTADO *e,FILE *f){
-    for(int i = 0; i < obter_num_jogadas(e); i++){
+    for(int i = 1; i < obter_num_jogadas(e); i++){
         JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
         char cj2 = j.jogador2.coluna + 'a';
         char lj2 = j.jogador2.linha + '1';
-        fprintf(f,"%02d: %c%c %c%c\n",i+1,cj1,lj1,cj2,lj2);
+        fprintf(f,"%02d: %c%c %c%c\n",i,cj1,lj1,cj2,lj2);
     }
     if(obter_jogador_atual(e) == 2){
         int j_incompleta = obter_num_jogadas(e);
         JOGADA j = obter_jogada(e,j_incompleta);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
-        fprintf(f,"%02d: %c%c\n",j_incompleta+1,cj1,lj1);
+        fprintf(f,"%02d: %c%c\n",j_incompleta,cj1,lj1);
     }
 }
 
@@ -110,12 +111,21 @@ ERROS ler(ESTADO *e, char *filename){
     return erro_tab;
 }
 
+ERROS pos(ESTADO *e, int jogada){
+    if(jogada >= obter_num_jogadas(e) && jogada < 0)
+        return POSICAO_INVALIDA;
+    altera_num_jogadas(e,jogada);
+    altera_ult_jogada(e,jogada);
+    return OK;
+}
+
 // Função que deve ser completada e colocada na camada de interface
 
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
     char col[2], lin[2], sair;
     char filename[BUF_SIZE];
+    int jogada;
     int vencedor_j1 = 0, vencedor_j2 = 0;
     while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
@@ -144,10 +154,16 @@ int interpretador(ESTADO *e) {
             else 
                 print_erro(erro_ler);
         }
-        if(strcmp(linha, "movs\n") == 0){ // DUVIDA
+        if(sscanf(linha, "pos %d", jogada) == 1){
+            //ERROS erro_pos;
+            //if((erro_pos = pos(e,jogada)) == OK);
+            //else 
+            //    print_erro(erro_pos);
+        }
+        if(strcmp(linha, "movs\n") == 0){ 
             movs(e,stdout);
         }
-        if(strcmp(linha, "Q\n") == 0) // DUVIDA
+        if(strcmp(linha, "Q\n") == 0)
             return 0;
     }
     if (vencedor_j1)
