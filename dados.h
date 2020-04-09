@@ -160,6 +160,12 @@ void add_num_jogadas(ESTADO *e);
 */
 void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
 
+void mudar_jogador_atual(ESTADO *e, int jogador);
+
+void mudar_num_jogadas(ESTADO *e, int jogada);
+
+void mudar_tabuleiro(ESTADO *e);
+
 /**
 \brief Altera o jogador
 @param e Apontador para o estado
