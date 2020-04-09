@@ -33,20 +33,20 @@ void mostrar_tabuleiro(FILE *f, ESTADO *e) {
 }
 
 void movs(ESTADO *e,FILE *f){
-    for(int i = 1; i < obter_num_jogadas(e); i++){
+    for(int i = 0; i < obter_num_jogadas(e); i++){
         JOGADA j = obter_jogada(e,i);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
         char cj2 = j.jogador2.coluna + 'a';
         char lj2 = j.jogador2.linha + '1';
-        fprintf(f,"%02d: %c%c %c%c\n",i,cj1,lj1,cj2,lj2);
+        fprintf(f,"%02d: %c%c %c%c\n",i+1,cj1,lj1,cj2,lj2);
     }
     if(obter_jogador_atual(e) == 2){
         int j_incompleta = obter_num_jogadas(e);
         JOGADA j = obter_jogada(e,j_incompleta);
         char cj1 = j.jogador1.coluna + 'a';
         char lj1 = j.jogador1.linha + '1';
-        fprintf(f,"%02d: %c%c\n",j_incompleta,cj1,lj1);
+        fprintf(f,"%02d: %c%c\n",j_incompleta+1,cj1,lj1);
     }
 }
 
@@ -111,11 +111,18 @@ ERROS ler(ESTADO *e, char *filename){
     return erro_tab;
 }
 
-ERROS pos(ESTADO *e, int jogada){
-    if(jogada >= obter_num_jogadas(e) && jogada < 0)
+ERROS pos(ESTADO *e, int jogada, int n_jog){
+    if(jogada < 0 || jogada-1 >= n_jog)
         return POSICAO_INVALIDA;
-    altera_num_jogadas(e,jogada);
-    altera_ult_jogada(e,jogada);
+    if(jogada == 0){
+        COORDENADA c = {4,4};
+        mudar_ultima_jogada(e,c);
+    }
+    else 
+        mudar_ultima_jogada(e,obter_jogada(e,jogada-1).jogador2);
+    mudar_jogador_atual(e,1);
+    mudar_num_jogadas(e,jogada);
+    mudar_tabuleiro(e);
     return OK;
 }
 
@@ -123,21 +130,23 @@ ERROS pos(ESTADO *e, int jogada){
 
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
-    char col[2], lin[2], sair;
+    char col[2], lin[2], sair, n_jog;
     char filename[BUF_SIZE];
-    int jogada;
-    int vencedor_j1 = 0, vencedor_j2 = 0;
+    int vencedor_j1 = 0, vencedor_j2 = 0, jogada;
+    JOGADAS *backup = (JOGADAS *) malloc(sizeof(JOGADAS));
     while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
         add_num_comando(e);
-        printf("# %02d Player%d (%d)> ",obter_num_comando(e),obter_jogador_atual(e),obter_num_jogadas(e));
+        printf("# %02d Player%d (%d)> ",obter_num_comando(e),obter_jogador_atual(e),obter_num_jogadas(e)+1);
         if(fgets(linha, BUF_SIZE, stdin) == NULL)
             return 0;
         if(strlen(linha) == 3 && sscanf(linha, "%[a-h]%[1-8]", col, lin) == 2) {
             COORDENADA coord = {*lin - '1', *col - 'a'};
             ERROS erro_jogar;
-            if((erro_jogar = jogar(e,coord,&vencedor_j1, &vencedor_j2)) == OK)
+            if((erro_jogar = jogar(e,coord,&vencedor_j1, &vencedor_j2)) == OK){
                 mostrar_tabuleiro(stdout,e);
+                n_jog = obter_num_jogadas(e);
+            }
             else 
                 print_erro(erro_jogar);
         }
@@ -154,11 +163,12 @@ int interpretador(ESTADO *e) {
             else 
                 print_erro(erro_ler);
         }
-        if(sscanf(linha, "pos %d", jogada) == 1){
-            //ERROS erro_pos;
-            //if((erro_pos = pos(e,jogada)) == OK);
-            //else 
-            //    print_erro(erro_pos);
+        if(sscanf(linha, "pos %d", &jogada) == 1){
+            ERROS erro_pos;
+            if((erro_pos = pos(e,jogada,n_jog)) == OK)
+                mostrar_tabuleiro(stdout,e);
+            else 
+                print_erro(erro_pos);
         }
         if(strcmp(linha, "movs\n") == 0){ 
             movs(e,stdout);
