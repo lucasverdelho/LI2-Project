@@ -105,12 +105,13 @@ void mudar_tabuleiro(ESTADO *e){
         }
     }
     for(int i = 0; i < obter_num_jogadas(e); i++){
-        e->tab[3][4] = PRETA;
         e->tab[7-e->jogadas[i].jogador1.linha][e->jogadas[i].jogador1.coluna] = PRETA;
         e->tab[7-e->jogadas[i].jogador2.linha][e->jogadas[i].jogador2.coluna] = PRETA;
     }
-    if(obter_num_jogadas(e) > 0)
+    if(obter_num_jogadas(e) > 0){
+        e->tab[3][4] = PRETA;
         e->tab[7-e->jogadas[obter_num_jogadas(e)-1].jogador2.linha][e->jogadas[obter_num_jogadas(e)-1].jogador2.coluna] = BRANCA;
+    }
 }
 
 void atualizar_jogada(ESTADO *e,COORDENADA c){
