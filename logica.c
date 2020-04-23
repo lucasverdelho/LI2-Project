@@ -2,7 +2,6 @@
 #include <math.h>
 #include "dados.h"
 #include "interface.h"
-
 int jogada_valida(ESTADO *e, COORDENADA c_jogada)
 {
     COORDENADA c_atual = obter_ultima_jogada(e);
@@ -10,16 +9,17 @@ int jogada_valida(ESTADO *e, COORDENADA c_jogada)
         return 1;
     return 0;
 }
-
 ERROS casas_livres(ESTADO *e)
 {
     COORDENADA c_atual = obter_ultima_jogada(e);
-    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas > 7; linhas++)
+    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas < 8; linhas++)
     {
         if (linhas < 0);
+        else if (linhas > 7)
+            break;
         else 
         {
-            for (int colunas = c_atual.coluna-1; colunas <= c_atual.coluna + 1 && colunas > 7; colunas++)
+            for (int colunas = c_atual.coluna-1; (colunas <= c_atual.coluna + 1) && colunas < 8; colunas++)
             {
                 if (colunas < 0);
                 else 
@@ -34,7 +34,6 @@ ERROS casas_livres(ESTADO *e)
     }
     return JOGADA_INVALIDA;
 }
-
 ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
 {
     COORDENADA normalizada = {7-c.linha,c.coluna};
@@ -65,5 +64,3 @@ ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
         return COORDENADA_INVALIDA;
     return OK;
 }
-
-
