@@ -15,8 +15,6 @@ ERROS casas_livres(ESTADO *e)
     for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas < 8; linhas++)
     {
         if (linhas < 0);
-        else if (linhas > 7)
-            break;
         else 
         {
             for (int colunas = c_atual.coluna-1; (colunas <= c_atual.coluna + 1) && colunas < 8; colunas++)
