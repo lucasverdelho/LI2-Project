@@ -158,8 +158,10 @@ int interpretador(ESTADO *e) {
         }
         if(sscanf(linha, "ler %s", filename) == 1){
             ERROS erro_ler;
-            if((erro_ler = ler(e,filename)) == OK)
+            if((erro_ler = ler(e,filename)) == OK){
                 mostrar_tabuleiro(stdout,e);
+                n_jog = obter_num_jogadas(e);
+            }
             else 
                 print_erro(erro_ler);
         }
