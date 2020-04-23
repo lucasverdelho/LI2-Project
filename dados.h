@@ -160,10 +160,24 @@ void add_num_jogadas(ESTADO *e);
 */
 void mudar_ultima_jogada(ESTADO *e,COORDENADA c);
 
+/**
+\brief Altera o jogador atual
+@param e Apontador para o estado
+@param jogador Número do jogador
+*/
 void mudar_jogador_atual(ESTADO *e, int jogador);
 
+/**
+\brief Altera o número de jogadas
+@param e Apontador para o estado
+@param jogada Número da jogada
+*/
 void mudar_num_jogadas(ESTADO *e, int jogada);
 
+/**
+\brief Altera o tabuleiro
+@param e Apontador para o estado
+*/
 void mudar_tabuleiro(ESTADO *e);
 
 /**
