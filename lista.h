@@ -1,5 +1,5 @@
-#ifndef ___LOGICA_H___
-#define ___LOGICA_H___
+#ifndef ___LISTA_H___
+#define ___LISTA_H___
 
 typedef struct nodo {
    void *valor;
