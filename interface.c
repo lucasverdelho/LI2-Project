@@ -131,7 +131,7 @@ ERROS pos(ESTADO *e, int jogada, int n_jog){
 LISTA lista_livres(ESTADO *e,int *dim){
     LISTA livres = criar_lista();
     COORDENADA c_atual = obter_ultima_jogada(e);
-    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas < 8; linhas++){
+    for (int linhas = 7 - c_atual.linha - 1; (linhas <= 7 - c_atual.linha + 1) && linhas < 8; linhas++){
         if (linhas < 0);
         else {
             for (int colunas = c_atual.coluna-1; (colunas <= c_atual.coluna + 1) && colunas < 8; colunas++){
@@ -139,8 +139,8 @@ LISTA lista_livres(ESTADO *e,int *dim){
                 else {
                     COORDENADA validar = {linhas,colunas};
                     if (obter_estado_casa(e,validar) == VAZIO){
-                        validar.linha =+ 7;
-                        livres = insere_cabeca(livres,duplica_coordenada(validar)); 
+                        COORDENADA c = {abs (7-linhas),colunas};
+                        livres = insere_cabeca(livres,duplica_coordenada(c)); 
                         *dim = *dim + 1;
                     }
                 }
@@ -151,13 +151,11 @@ LISTA lista_livres(ESTADO *e,int *dim){
 }
 
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
-    srand(time(NULL));
     int dim = 0;
     LISTA casas_livres = lista_livres(e,&dim);
     int jogada = rand() % dim;
-    for(int i = 0; i < jogada; i++){
-        remove_cabeca(casas_livres);
-    }
+    for(int i = 0; i < jogada; i++)
+        casas_livres = remove_cabeca(casas_livres);
     COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
     jogar(e,*c,vencedor_j1,vencedor_j2);
     mostrar_tabuleiro(stdout,e);
@@ -166,6 +164,7 @@ void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
 // Função que deve ser completada e colocada na camada de interface
 
 int interpretador(ESTADO *e) {
+    srand(time(NULL));
     char linha[BUF_SIZE];
     char col[2], lin[2];
     char filename[BUF_SIZE];
