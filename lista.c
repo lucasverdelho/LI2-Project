@@ -3,9 +3,7 @@
 #include "lista.h"
 
 LISTA criar_lista(){
-    LISTA l = malloc(sizeof(NODO));
-    l->valor = NULL;
-    l->proximo = NULL;
+    LISTA l = NULL;
     return l;
 }
 
