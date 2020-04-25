@@ -150,6 +150,17 @@ LISTA lista_livres(ESTADO *e,int *dim){
     return livres;
 }
 
+void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
+    int dim = 0;
+    LISTA casas_livres = lista_livres(e,&dim);
+    
+    for(int i = 0; i < ; i++)
+        casas_livres = remove_cabeca(casas_livres);
+    COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+    jogar(e,*c,vencedor_j1,vencedor_j2);
+    mostrar_tabuleiro(stdout,e);
+}
+
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
     int dim = 0;
     LISTA casas_livres = lista_livres(e,&dim);
@@ -209,6 +220,9 @@ int interpretador(ESTADO *e) {
         }
         if(strcmp(linha, "jog\n") == 0){ 
             jog(e,&vencedor_j1,&vencedor_j2);
+        }
+        if(strcmp(linha, "jog2\n") == 0){ 
+            jog2(e,&vencedor_j1,&vencedor_j2);
         }
         if(strcmp(linha, "movs\n") == 0){ 
             movs(e,stdout);
