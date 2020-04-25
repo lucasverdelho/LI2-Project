@@ -2,6 +2,7 @@
 #include <math.h>
 #include "dados.h"
 #include "interface.h"
+
 int jogada_valida(ESTADO *e, COORDENADA c_jogada)
 {
     COORDENADA c_atual = obter_ultima_jogada(e);
