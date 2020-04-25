@@ -209,4 +209,6 @@ void armazenar_jogada(ESTADO *e, JOGADA jog, int num_jog);
 */
 void armazenar_ultima_jogada(ESTADO *e,int num_jog);
 
+COORDENADA *duplica_coordenada(COORDENADA c);
+
 #endif
