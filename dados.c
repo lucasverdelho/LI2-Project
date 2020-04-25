@@ -144,3 +144,9 @@ void armazenar_ultima_jogada(ESTADO *e,int num_jog){
         e->num_jogadas = num_jog;
     }
 }
+
+COORDENADA *duplica_coordenada(COORDENADA c){
+    COORDENADA *aux = (COORDENADA *) malloc(sizeof(COORDENADA));
+    *aux = c;
+    return aux;
+}
