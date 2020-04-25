@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "dados.h"
 #include "logica.h"
+#include "lista.h"
 
 void print_erro(ERROS erro){
     char *lista_erros[] = {
@@ -126,14 +128,48 @@ ERROS pos(ESTADO *e, int jogada, int n_jog){
     return OK;
 }
 
+LISTA lista_livres(ESTADO *e,int *dim){
+    LISTA livres = criar_lista();
+    COORDENADA c_atual = obter_ultima_jogada(e);
+    for (int linhas = 7 - c_atual.linha - 1 ; linhas <= 7 - c_atual.linha + 1 && linhas < 8; linhas++){
+        if (linhas < 0);
+        else {
+            for (int colunas = c_atual.coluna-1; (colunas <= c_atual.coluna + 1) && colunas < 8; colunas++){
+                if (colunas < 0);
+                else {
+                    COORDENADA validar = {linhas,colunas};
+                    if (obter_estado_casa(e,validar) == VAZIO){
+                        validar.linha =+ 7;
+                        livres = insere_cabeca(livres,duplica_coordenada(validar)); 
+                        *dim = *dim + 1;
+                    }
+                }
+            }
+        }
+    }
+    return livres;
+}
+
+void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
+    srand(time(NULL));
+    int dim = 0;
+    LISTA casas_livres = lista_livres(e,&dim);
+    int jogada = rand() % dim;
+    for(int i = 0; i < jogada; i++){
+        remove_cabeca(casas_livres);
+    }
+    COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+    jogar(e,*c,vencedor_j1,vencedor_j2);
+    mostrar_tabuleiro(stdout,e);
+}
+
 // Função que deve ser completada e colocada na camada de interface
 
 int interpretador(ESTADO *e) {
     char linha[BUF_SIZE];
-    char col[2], lin[2], sair, n_jog;
+    char col[2], lin[2];
     char filename[BUF_SIZE];
-    int vencedor_j1 = 0, vencedor_j2 = 0, jogada;
-    JOGADAS *backup = (JOGADAS *) malloc(sizeof(JOGADAS));
+    int vencedor_j1 = 0, vencedor_j2 = 0, jogada, n_jog = 0;
     while (!vencedor_j1 && !vencedor_j2) // Condiçao dos jogadores
     {
         add_num_comando(e);
@@ -171,6 +207,9 @@ int interpretador(ESTADO *e) {
                 mostrar_tabuleiro(stdout,e);
             else 
                 print_erro(erro_pos);
+        }
+        if(strcmp(linha, "jog\n") == 0){ 
+            jog(e,&vencedor_j1,&vencedor_j2);
         }
         if(strcmp(linha, "movs\n") == 0){ 
             movs(e,stdout);
