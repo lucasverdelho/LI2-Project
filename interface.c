@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "dados.h"
 #include "logica.h"
 #include "lista.h"
@@ -150,16 +151,76 @@ LISTA lista_livres(ESTADO *e,int *dim){
     return livres;
 }
 
-void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
+double distancia_1(COORDENADA c)
+{
+    int quadrado = (c.linha^2+c.coluna^2);
+    double dist = sqrt((quadrado));
+    return dist;
+}
+
+double distancia_2(COORDENADA c)
+{
+    int quadrado = ((7-c.linha)^2+(7-c.coluna)^2);
+    double dist = sqrt((quadrado));
+    return dist;
+}
+
+COORDENADA verifica_jog1(int dim, LISTA casas_livres)
+{
+    double menor_dist = 50;
+    COORDENADA menor = {0,0};
+    for(int i = 0; i < dim ; i++)
+    {
+        COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+        if (distancia_1(*c) < menor_dist)
+        {
+            menor = *c;
+            menor_dist = (distancia_1(*c));
+        }
+        casas_livres = remove_cabeca(casas_livres);
+    }
+}
+
+COORDENADA verifica_jog2(int dim, LISTA casas_livres)
+{
+    double menor_dist = 50;
+    COORDENADA menor = {0,0};
+    for(int i = 0; i < dim ; i++)
+    {
+        COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+        if (distancia_2(*c) < menor_dist)
+        {
+            menor = *c;
+            menor_dist = (distancia_2(*c));
+        }
+        casas_livres = remove_cabeca(casas_livres);
+    }
+}
+void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
+{
     int dim = 0;
     LISTA casas_livres = lista_livres(e,&dim);
-    
-    for(int i = 0; i < ; i++)
-        casas_livres = remove_cabeca(casas_livres);
-    COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
-    jogar(e,*c,vencedor_j1,vencedor_j2);
+    if (obter_jogador_atual(e) == 1)
+    {
+        COORDENADA jogada = verifica_jog1(dim, casas_livres);
+        jogar (e,jogada,vencedor_j1,vencedor_j2);
+    }
+    else 
+    {
+        COORDENADA jogada = verifica_jog2(dim, casas_livres);
+        jogar (e,jogada,vencedor_j1,vencedor_j2);
+    }
     mostrar_tabuleiro(stdout,e);
 }
+
+// CHAMAR A DEVOLVECABEÇAS NA FUNÇAO QUE CALCULA A DISTANCIA 
+// SE A DISTANCIA FOR MAIOR Q O ACUMULADOR o menor passa a ser a coordenada atual
+// se nao só repete no ciclo,
+// no fim jogar com a coordenada que ficou
+
+
+
+
 
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
     int dim = 0;
