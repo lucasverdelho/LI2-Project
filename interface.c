@@ -153,48 +153,48 @@ LISTA lista_livres(ESTADO *e,int *dim){
 
 double distancia_1(COORDENADA c)
 {
-    int quadrado = (c.linha^2+c.coluna^2);
-    double dist = sqrt((quadrado));
+    int quadrado = pow(c.linha,2) + pow(c.coluna,2);
+    double dist = sqrt(quadrado);
     return dist;
 }
 
 double distancia_2(COORDENADA c)
 {
-    int quadrado = ((7-c.linha)^2+(7-c.coluna)^2);
-    double dist = sqrt((quadrado));
+    int quadrado = pow(7-c.linha,2) + pow(7-c.coluna,2);
+    double dist = sqrt(quadrado);
     return dist;
 }
 
-COORDENADA verifica_jog1(int dim, LISTA casas_livres)
+COORDENADA verifica_jog1(LISTA casas_livres)
 {
     double menor_dist = 50;
     COORDENADA menor = {0,0};
-    for(int i = 0; i < dim ; i++)
+    for(LISTA T = casas_livres; !lista_esta_vazia(T); T = proximo(T))
     {
-        COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+        COORDENADA *c = (COORDENADA *) devolve_cabeca(T);
         if (distancia_1(*c) < menor_dist)
         {
             menor = *c;
             menor_dist = (distancia_1(*c));
         }
-        casas_livres = remove_cabeca(casas_livres);
     }
+    return menor;
 }
 
-COORDENADA verifica_jog2(int dim, LISTA casas_livres)
+COORDENADA verifica_jog2(LISTA casas_livres)
 {
     double menor_dist = 50;
     COORDENADA menor = {0,0};
-    for(int i = 0; i < dim ; i++)
+    for(LISTA T = casas_livres; !lista_esta_vazia(T); T = proximo(T))
     {
-        COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+        COORDENADA *c = (COORDENADA *) devolve_cabeca(T);
         if (distancia_2(*c) < menor_dist)
         {
             menor = *c;
             menor_dist = (distancia_2(*c));
         }
-        casas_livres = remove_cabeca(casas_livres);
     }
+    return menor;
 }
 void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
 {
@@ -202,15 +202,17 @@ void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
     LISTA casas_livres = lista_livres(e,&dim);
     if (obter_jogador_atual(e) == 1)
     {
-        COORDENADA jogada = verifica_jog1(dim, casas_livres);
+        COORDENADA jogada = verifica_jog1(casas_livres);
         jogar (e,jogada,vencedor_j1,vencedor_j2);
     }
     else 
     {
-        COORDENADA jogada = verifica_jog2(dim, casas_livres);
+        COORDENADA jogada = verifica_jog2(casas_livres);
         jogar (e,jogada,vencedor_j1,vencedor_j2);
     }
     mostrar_tabuleiro(stdout,e);
+    while(!lista_esta_vazia(casas_livres))
+        casas_livres = remove_cabeca(casas_livres);
 }
 
 // CHAMAR A DEVOLVECABEÇAS NA FUNÇAO QUE CALCULA A DISTANCIA 
@@ -231,6 +233,8 @@ void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
     COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
     jogar(e,*c,vencedor_j1,vencedor_j2);
     mostrar_tabuleiro(stdout,e);
+    while(!lista_esta_vazia(casas_livres))
+        remove_cabeca(casas_livres);
 }
 
 // Função que deve ser completada e colocada na camada de interface
