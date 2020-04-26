@@ -10,6 +10,7 @@ int jogada_valida(ESTADO *e, COORDENADA c_jogada)
         return 1;
     return 0;
 }
+
 ERROS casas_livres(ESTADO *e)
 {
     COORDENADA c_atual = obter_ultima_jogada(e);
@@ -33,6 +34,7 @@ ERROS casas_livres(ESTADO *e)
     }
     return JOGADA_INVALIDA;
 }
+
 ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2)
 {
     COORDENADA normalizada = {7-c.linha,c.coluna};
