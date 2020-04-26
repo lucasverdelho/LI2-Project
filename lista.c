@@ -30,7 +30,7 @@ LISTA remove_cabeca(LISTA L){
 }
 
 int lista_esta_vazia(LISTA L){
-  if(L->valor == NULL)
+  if(L == NULL)
     return 1;
   return 0;
 }
