@@ -153,11 +153,7 @@ LISTA lista_livres(ESTADO *e,int *dim){
 
 double distancia_1(COORDENADA c)
 {
-<<<<<<< HEAD
     int quadrado = pow(c.linha,2) + pow(c.coluna,2);
-=======
-    int quadrado = (c.linha^2+c.coluna^2);
->>>>>>> 8ca031e926e48539c5d922699fd44d159b2dc701
     double dist = sqrt(quadrado);
     return dist;
 }
