@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "dados.h"
 
 ESTADO *inicializar_estado(){
@@ -55,17 +56,6 @@ COORDENADA obter_ultima_jogada(ESTADO *e)
 
 JOGADA obter_jogada(ESTADO *e, int indice){
     return e->jogadas[indice];
-}
-
-void mete_casa_branca(ESTADO *e,COORDENADA c)
-{
-    e->tab[7-c.linha][c.coluna] = BRANCA;
-}
-
-void mete_casa_preta(ESTADO *e)
-{
-    COORDENADA atual = e->ultima_jogada;
-    e->tab[7-atual.linha][atual.coluna] = PRETA;
 }
 
 void set_casa(ESTADO *e, COORDENADA c, CASA valor){
