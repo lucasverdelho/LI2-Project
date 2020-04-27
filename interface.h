@@ -2,7 +2,6 @@
 @file interface.h
 Interpretador de comandos e mostra Tabuleiro
 */
-#include "lista.h"
 
 #ifndef ___INTERFACE_H___
 #define ___INTERFACE_H___
@@ -46,7 +45,7 @@ ERROS ler(ESTADO *e, char *filename);
 
 ERROS pos(ESTADO *e, int jogada, int n_jog);
 
-LISTA lista_livres(ESTADO *e,int *dim);
+void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2);
 
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2);
 
