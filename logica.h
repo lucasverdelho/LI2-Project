@@ -5,7 +5,7 @@ Lógica do progama
 
 #ifndef ___LOGICA_H___
 #define ___LOGICA_H___
-
+#include "lista.h"
 /**
 \brief Função que verifica se uma jogada é válida
 @param e Apontador para o estado
@@ -31,5 +31,10 @@ ERROS casas_livres(ESTADO *e);
 */
 ERROS jogar(ESTADO *e, COORDENADA c,int *vence_j1, int *vence_j2);
 
+double distancia(COORDENADA c1, COORDENADA c2);
+
+COORDENADA coord_jog(LISTA casas_livres, int jogador);
+
+LISTA lista_livres(ESTADO *e,int *dim);
 
 #endif
