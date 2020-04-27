@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
+
 #include "dados.h"
 #include "logica.h"
 #include "lista.h"
@@ -129,100 +130,24 @@ ERROS pos(ESTADO *e, int jogada, int n_jog){
     return OK;
 }
 
-LISTA lista_livres(ESTADO *e,int *dim){
-    LISTA livres = criar_lista();
-    COORDENADA c_atual = obter_ultima_jogada(e);
-    for (int linhas = 7 - c_atual.linha - 1; (linhas <= 7 - c_atual.linha + 1) && linhas < 8; linhas++){
-        if (linhas < 0);
-        else {
-            for (int colunas = c_atual.coluna-1; (colunas <= c_atual.coluna + 1) && colunas < 8; colunas++){
-                if (colunas < 0);
-                else {
-                    COORDENADA validar = {linhas,colunas};
-                    if (obter_estado_casa(e,validar) == VAZIO){
-                        COORDENADA c = {abs (7-linhas),colunas};
-                        livres = insere_cabeca(livres,duplica_coordenada(c)); 
-                        *dim = *dim + 1;
-                    }
-                }
-            }
-        }
-    }
-    return livres;
-}
-
-double distancia_1(COORDENADA c)
-{
-    int quadrado = pow(c.linha,2) + pow(c.coluna,2);
-    double dist = sqrt(quadrado);
-    return dist;
-}
-
-double distancia_2(COORDENADA c)
-{
-    int quadrado = pow(7-c.linha,2) + pow(7-c.coluna,2);
-    double dist = sqrt(quadrado);
-    return dist;
-}
-
-COORDENADA verifica_jog1(LISTA casas_livres)
-{
-    double menor_dist = 50;
-    COORDENADA menor = {0,0};
-    for(LISTA T = casas_livres; !lista_esta_vazia(T); T = proximo(T))
-    {
-        COORDENADA *c = (COORDENADA *) devolve_cabeca(T);
-        if (distancia_1(*c) < menor_dist)
-        {
-            menor = *c;
-            menor_dist = (distancia_1(*c));
-        }
-    }
-    return menor;
-}
-
-COORDENADA verifica_jog2(LISTA casas_livres)
-{
-    double menor_dist = 50;
-    COORDENADA menor = {0,0};
-    for(LISTA T = casas_livres; !lista_esta_vazia(T); T = proximo(T))
-    {
-        COORDENADA *c = (COORDENADA *) devolve_cabeca(T);
-        if (distancia_2(*c) < menor_dist)
-        {
-            menor = *c;
-            menor_dist = (distancia_2(*c));
-        }
-    }
-    return menor;
-}
 void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
 {
     int dim = 0;
     LISTA casas_livres = lista_livres(e,&dim);
     if (obter_jogador_atual(e) == 1)
     {
-        COORDENADA jogada = verifica_jog1(casas_livres);
+        COORDENADA jogada = coord_jog(casas_livres,1);
         jogar (e,jogada,vencedor_j1,vencedor_j2);
     }
     else 
     {
-        COORDENADA jogada = verifica_jog2(casas_livres);
+        COORDENADA jogada = coord_jog(casas_livres,2);
         jogar (e,jogada,vencedor_j1,vencedor_j2);
     }
     mostrar_tabuleiro(stdout,e);
     while(!lista_esta_vazia(casas_livres))
         casas_livres = remove_cabeca(casas_livres);
 }
-
-// CHAMAR A DEVOLVECABEÇAS NA FUNÇAO QUE CALCULA A DISTANCIA 
-// SE A DISTANCIA FOR MAIOR Q O ACUMULADOR o menor passa a ser a coordenada atual
-// se nao só repete no ciclo,
-// no fim jogar com a coordenada que ficou
-
-
-
-
 
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
     int dim = 0;
@@ -234,7 +159,7 @@ void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
     jogar(e,*c,vencedor_j1,vencedor_j2);
     mostrar_tabuleiro(stdout,e);
     while(!lista_esta_vazia(casas_livres))
-        remove_cabeca(casas_livres);
+        casas_livres = remove_cabeca(casas_livres);
 }
 
 // Função que deve ser completada e colocada na camada de interface
