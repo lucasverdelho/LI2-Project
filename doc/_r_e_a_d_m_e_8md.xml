@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>LI2</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Turno<sp/>-<sp/>PL3<sp/><sp/>---<sp/><sp/>Grupo<sp/>-<sp/>7</highlight></codeline>
+<codeline><highlight class="normal">Elementos<sp/>do<sp/>Grupo</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>André<sp/>Lucas<sp/>Silva<sp/>Verdelho,<sp/>93247</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>João<sp/>Tiago<sp/>Alves<sp/>Fidalgo<sp/>de<sp/>Sousa,<sp/>93248</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Nelson<sp/>Miranda<sp/>Ribeiro,<sp/>93188</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

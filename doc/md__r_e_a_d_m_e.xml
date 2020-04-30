@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>LI2</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md1">
+<title>Turno - PL3  —  Grupo - 7</title>
+<para>Elementos do Grupo<itemizedlist>
+<listitem><para>André Lucas Silva Verdelho, 93247</para>
+</listitem><listitem><para>João Tiago Alves Fidalgo de Sousa, 93248</para>
+</listitem><listitem><para>Nelson Miranda Ribeiro, 93188 </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

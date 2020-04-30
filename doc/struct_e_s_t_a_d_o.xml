@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="struct_e_s_t_a_d_o" kind="struct" language="C++" prot="public">
+    <compoundname>ESTADO</compoundname>
+    <includes refid="dados_8h" local="no">dados.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a00c6ffee9c6e637d4178cb6e8846a578" prot="public" static="no" mutable="no">
+        <type><ref refid="dados_8h_1aba91601f16d4c485b2d9b8c429f27039" kindref="member">CASA</ref></type>
+        <definition>CASA tab[8][8]</definition>
+        <argsstring>[8][8]</argsstring>
+        <name>tab</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O tabuleiro </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="60" column="10" bodyfile="dados.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a88f042640b66b99525b1c9d830893177" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_c_o_o_r_d_e_n_a_d_a" kindref="compound">COORDENADA</ref></type>
+        <definition>COORDENADA ultima_jogada</definition>
+        <argsstring></argsstring>
+        <name>ultima_jogada</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A coordenada da última jogada </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="62" column="16" bodyfile="dados.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a0e44ff9e999c7573f4b87cb8a7aba6c2" prot="public" static="no" mutable="no">
+        <type><ref refid="dados_8h_1a94c221d29a1760f008b7834093259b7d" kindref="member">JOGADAS</ref></type>
+        <definition>JOGADAS jogadas</definition>
+        <argsstring></argsstring>
+        <name>jogadas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>As jogadas </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="64" column="13" bodyfile="dados.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a06af1e846368d0fc9525e78f4d86faa3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int num_jogadas</definition>
+        <argsstring></argsstring>
+        <name>num_jogadas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O número das jogadas, usado no prompt </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="66" column="9" bodyfile="dados.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a8c6f18cc36493c99b732790c06bf29ae" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int num_comando</definition>
+        <argsstring></argsstring>
+        <name>num_comando</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O nº de comando, usado no prompt </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="68" column="9" bodyfile="dados.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_e_s_t_a_d_o_1a6f3701db06762a60333719d94aa4d28c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int jogador_atual</definition>
+        <argsstring></argsstring>
+        <name>jogador_atual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O jogador atual </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dados.h" line="70" column="9" bodyfile="dados.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Tipo de dados para o estado. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>JOGADA</label>
+        <link refid="struct_j_o_g_a_d_a"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>jogador1</edgelabel>
+          <edgelabel>jogador2</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>COORDENADA</label>
+        <link refid="struct_c_o_o_r_d_e_n_a_d_a"/>
+      </node>
+      <node id="1">
+        <label>ESTADO</label>
+        <link refid="struct_e_s_t_a_d_o"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ultima_jogada</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>jogadas</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="dados.h" line="58" column="1" bodyfile="dados.h" bodystart="58" bodyend="71"/>
+    <listofallmembers>
+      <member refid="struct_e_s_t_a_d_o_1a0e44ff9e999c7573f4b87cb8a7aba6c2" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>jogadas</name></member>
+      <member refid="struct_e_s_t_a_d_o_1a6f3701db06762a60333719d94aa4d28c" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>jogador_atual</name></member>
+      <member refid="struct_e_s_t_a_d_o_1a8c6f18cc36493c99b732790c06bf29ae" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>num_comando</name></member>
+      <member refid="struct_e_s_t_a_d_o_1a06af1e846368d0fc9525e78f4d86faa3" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>num_jogadas</name></member>
+      <member refid="struct_e_s_t_a_d_o_1a00c6ffee9c6e637d4178cb6e8846a578" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>tab</name></member>
+      <member refid="struct_e_s_t_a_d_o_1a88f042640b66b99525b1c9d830893177" prot="public" virt="non-virtual"><scope>ESTADO</scope><name>ultima_jogada</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

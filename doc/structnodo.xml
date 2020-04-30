@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="structnodo" kind="struct" language="C++" prot="public">
+    <compoundname>nodo</compoundname>
+    <includes refid="lista_8h" local="no">lista.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnodo_1ac78f1a082a695595f0d3ed32cead97f4" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* valor</definition>
+        <argsstring></argsstring>
+        <name>valor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="lista.h" line="12" column="9" bodyfile="lista.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnodo_1a03f1eceb28ca4022ecc73589b6ca39d9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structnodo" kindref="compound">nodo</ref> *</type>
+        <definition>struct nodo* proximo</definition>
+        <argsstring></argsstring>
+        <name>proximo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="lista.h" line="13" column="14" bodyfile="lista.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Tipo de dados para Listas. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>nodo</label>
+        <link refid="structnodo"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>proximo</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="lista.h" line="11" column="1" bodyfile="lista.h" bodystart="11" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structnodo_1a03f1eceb28ca4022ecc73589b6ca39d9" prot="public" virt="non-virtual"><scope>nodo</scope><name>proximo</name></member>
+      <member refid="structnodo_1ac78f1a082a695595f0d3ed32cead97f4" prot="public" virt="non-virtual"><scope>nodo</scope><name>valor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
