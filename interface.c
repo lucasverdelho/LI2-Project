@@ -130,6 +130,19 @@ ERROS pos(ESTADO *e, int jogada, int n_jog){
     return OK;
 }
 
+void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
+    int dim = 0;
+    LISTA casas_livres = lista_livres(e,&dim);
+    int jogada = rand() % dim;
+    for(int i = 0; i < jogada; i++)
+        casas_livres = remove_cabeca(casas_livres);
+    COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
+    jogar(e,*c,vencedor_j1,vencedor_j2);
+    mostrar_tabuleiro(stdout,e);
+    while(!lista_esta_vazia(casas_livres))
+        casas_livres = remove_cabeca(casas_livres);
+}
+
 void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
 {
     int dim = 0;
@@ -149,20 +162,6 @@ void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2)
         casas_livres = remove_cabeca(casas_livres);
 }
 
-void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2){
-    int dim = 0;
-    LISTA casas_livres = lista_livres(e,&dim);
-    int jogada = rand() % dim;
-    for(int i = 0; i < jogada; i++)
-        casas_livres = remove_cabeca(casas_livres);
-    COORDENADA *c = (COORDENADA *) devolve_cabeca(casas_livres);
-    jogar(e,*c,vencedor_j1,vencedor_j2);
-    mostrar_tabuleiro(stdout,e);
-    while(!lista_esta_vazia(casas_livres))
-        casas_livres = remove_cabeca(casas_livres);
-}
-
-// Função que deve ser completada e colocada na camada de interface
 
 int interpretador(ESTADO *e) {
     srand(time(NULL));
