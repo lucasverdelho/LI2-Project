@@ -1,4 +1,4 @@
-# MiEI  -  LI2
+# MIEI  -  LI2
 ## Turno - PL3  ---  Grupo - 7
 Elementos do Grupo
   - André Lucas Silva Verdelho, 93247
