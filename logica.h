@@ -6,6 +6,7 @@ Lógica do progama
 #ifndef ___LOGICA_H___
 #define ___LOGICA_H___
 #include "lista.h"
+
 /**
 \brief Função que verifica se uma jogada é válida
 Esta funcão verifica se a coordenada introduzida é vizinha da peça branca.
