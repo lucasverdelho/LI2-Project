@@ -43,15 +43,37 @@ ERROS ler_tabuleiro(ESTADO *e,FILE *f);
 */
 ERROS ler(ESTADO *e, char *filename);
 
+/**
+\brief Função que permite o utilizador aceder a uma jogada anterior
+@param e Apontador para o estado
+@param jogada Número da jogada
+@param n_jog Número de jogadas
+@returns POSICAO_INVALIDA se a posição introduzida for inválida e OK se estiver tudo em ordem
+*/
 ERROS pos(ESTADO *e, int jogada, int n_jog);
 
-void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2);
-
+/**
+\brief Função que permite ao jogador atual peça ao jogador para jogar por si
+Nesta função usamos a eurística da distância menor usando a distância Euclidiana.
+@param e Apontador para o estado
+@param vencedor_j1 Apontador para o jogador vencedor 1
+@param vencedor_j2 Apontador para o jogador vencedor 2 
+*/
 void jog(ESTADO *e,int *vencedor_j1,int *vencedor_j2);
+
+/**
+\brief Função que permite ao jogador atual peça ao jogador para jogar por si
+Nesta função usamos a eurística da escolha aleatória.
+@param e Apontador para o estado
+@param vencedor_j1 Apontador para o jogador vencedor 1
+@param vencedor_j2 Apontador para o jogador vencedor 2 
+*/
+void jog2(ESTADO *e,int *vencedor_j1,int *vencedor_j2);
 
 /**
 \brief Função que interpreta os comandos
 @param e Apontador para o estado
+@returns Quando o jogo acabar
 */
 int interpretador(ESTADO *e);
 
