@@ -213,7 +213,7 @@ void armazenar_ultima_jogada(ESTADO *e,int num_jog);
 \brief Duplica a coordenada
 Esta função é uma auxiliar da função 'lista_livres' que aloca memória para uma coordenada e duplica-a
 @param c A coordenada
-@returns 
+@returns A coordenada
 */
 COORDENADA *duplica_coordenada(COORDENADA c);
 
